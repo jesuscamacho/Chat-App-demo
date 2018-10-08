@@ -34,7 +34,8 @@ app.get('/messages',(req,res)=>{
 
 app.post('/messages',async(req,res)=>{
 
-    try{
+    try{    
+        throw 'error'    
         var message = new Message(req.body)
 
         var savedMessage = await message.save()
@@ -51,7 +52,9 @@ app.post('/messages',async(req,res)=>{
 
     }catch(error){
         res.sendStatus(500)
-        return console.log(err)
+        return console.log(error)
+    }finally{
+        console.log('message post called')
     }
 });
 // app.post('/messages',(req,res)=>{
